@@ -32,7 +32,7 @@ class QuizProvider extends ChangeNotifier{
   int get index => _index;
   int get total => _questions.length;
   int get score => _score;
-  int get? selected => _selected;
+  int? get selected => _selected;
   int get secondsLeft => _secondsLeft;
   Question get current => _questions[_index];
 
@@ -81,10 +81,16 @@ class QuizProvider extends ChangeNotifier{
   }
 
   void _resetQuiz(){
-    if(_selected == null) return;
-    _index ++;
-    _selected = null;
+    _index=0;
+    _score=0;
+    _selected=null;
+    _secondsLeft=perQuestionSeconds;
+    stopTimer();
+  }
 
+  void restart(){
+    _resetQuiz();
+    notifyListeners();
   }
 
 
