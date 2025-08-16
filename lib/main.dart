@@ -4,22 +4,25 @@ import 'package:quiz_app_latex/services/local_store.dart';
 import 'package:quiz_app_latex/views/home_screen.dart';
 import 'package:quiz_app_latex/views/leaderboard_screen.dart';
 import 'package:quiz_app_latex/views/results_screen.dart';
-
 import 'providers/quiz_provider.dart';
 import 'providers/theme_provider.dart';
 import 'views/quiz_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+
   await LocalStore.init();
   final questions = await LocalStore.loadQuestions();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => ThemeProvider()),
-      ChangeNotifierProvider(create: (context) => QuizProvider(questions)),
-    ],
-    child: const MyApp()
-  ));
+  runApp(
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => ThemeProvider()),
+            ChangeNotifierProvider(create: (context) => QuizProvider(questions)),
+          ],
+          child: const MyApp()
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -36,8 +36,10 @@ class OptionTile extends StatelessWidget {
           ),
         ),
         child: LatexText(
-          tex: label,
-          style: Theme.of(context).textTheme.bodyLarge,
+          tex: label ,
+          // style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge ?? const TextStyle(fontSize: 16),
+
         ),
       ),
     );

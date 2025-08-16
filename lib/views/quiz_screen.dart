@@ -18,8 +18,11 @@ class _QuizScreenState extends State<QuizScreen> {
   void initState() {
     super.initState();
     final quizPro = context.read<QuizProvider>();
-    quizPro.startTimer(()=>setState((){}), ()=>_onTimeout());
+    quizPro.startTimer(() {
+      if (mounted) setState(() {});
+    }, () => _onTimeout());
   }
+
 
   @override
   void dispose() {
@@ -30,7 +33,7 @@ class _QuizScreenState extends State<QuizScreen> {
   void _onTimeout(){
     final quizPro = context.read<QuizProvider>();
     if(quizPro.selected == null) quizPro.select(-1);
-    setState(() {});
+    if(mounted) setState(() {});
   }
 
   @override
@@ -53,31 +56,51 @@ class _QuizScreenState extends State<QuizScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 250),
-              transitionBuilder: (c, a)=>FadeTransition(opacity: a, child: SlideTransition(position: a.drive(Tween(begin: const Offset(0.1,0), end: Offset.zero)), child: c)),
-              child: Column(key: ValueKey(question.id), crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 250),
+                transitionBuilder: (c, a)=>FadeTransition(
+                    opacity: a,
+                    child: SlideTransition(
+                        position: a.drive(Tween(begin: const Offset(0.1,0), end: Offset.zero)),
+                        child: c)),
+                child: Column(
+                    key: ValueKey(question.id),
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Card(
+                      margin: const EdgeInsets.only(bottom: 16),
+                      child: Padding(padding: const EdgeInsets.all(16),
+                      child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxHeight: MediaQuery.of(context).size.height * 0.3,
+                          ),
+                        child: SingleChildScrollView(
+                          child: LatexText(
+                              tex:question.question,
+                              style: Theme.of(context).textTheme.titleMedium),
+                        ),
+                      )
+                      )),
 
-                Card(
-                    margin: const EdgeInsets.only(bottom: 16),
-                    child: Padding(padding: const EdgeInsets.all(16),
-                    child: LatexText(
-                        tex:question.question,
-                        style: Theme.of(context).textTheme.titleMedium)
-                    )),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: question.options.length,
+                          itemBuilder: (context, i) => OptionTile(
+                            label: question.options[i],
+                            selected: quizPro.selected == i,
+                            correct: i == question.answerIndex,
+                            locked: locked,
+                            onTap: () => quizPro.select(i),
+                          ),
+                        ),
+                      ),
 
-
-                ...List.generate(question.options.length, (i)=> OptionTile(
-                  label: question.options[i],
-                  selected: quizPro.selected==i,
-                  correct: i==question.answerIndex,
-                  locked: locked,
-                  onTap: ()=>quizPro.select(i),
-                )),
-              ]),
+                ]),
+              ),
             ),
 
-            const Spacer(),
+            // const Spacer(),
 
             Row(
               children: [

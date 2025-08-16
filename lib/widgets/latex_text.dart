@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tex/flutter_tex.dart';
+import 'package:latext/latext.dart';
+
 
 class LatexText extends StatelessWidget {
-  final String tex;
+  final String? tex;
   final TextStyle? style;
+
   const LatexText({super.key, required this.tex, this.style});
 
   @override
   Widget build(BuildContext context) {
-    return TeXView(
-      child: TeXViewDocument(
-        tex,
-        style: TeXViewStyle(
-          padding: TeXViewPadding.all(8),
-          backgroundColor: Colors.transparent,
-        ),
-      ),
-      style: TeXViewStyle(
-        backgroundColor: Colors.transparent,
+    final safeTex = tex?.trim();
+    if (safeTex == null || safeTex.isEmpty) {
+      return Text(" ", style: style ?? const TextStyle(fontSize: 16));
+    }
+
+    return LaTexT(
+      laTeXCode: Text(
+        safeTex,
+        style: style ?? const TextStyle(fontSize: 16),
       ),
     );
   }

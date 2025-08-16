@@ -48,12 +48,13 @@ class QuizProvider extends ChangeNotifier{
     _timer?.cancel();
     _secondsLeft = perQuestionSeconds;
     _timer = Timer.periodic(const Duration(seconds: 1), (_){
-      if(--_secondsLeft <= 0){
+      _secondsLeft --;
+      onTick();
+      if(secondsLeft <= 0){
         _timer?.cancel();
         _selected ??= -1;
         onTimeout();
       }
-      onTick();
     });
   }
 
