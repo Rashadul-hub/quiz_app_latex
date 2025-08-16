@@ -16,7 +16,7 @@ class QuizProvider extends ChangeNotifier{
   int _secondsLeft;
   Timer? _timer;
 
-  QuizProvider(this._all,{this.perQuestionSeconds =15})
+  QuizProvider(this._all,{this.perQuestionSeconds =10})
       : _secondsLeft = perQuestionSeconds{
     _questions = _all;
   }
