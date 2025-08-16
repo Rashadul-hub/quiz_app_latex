@@ -39,7 +39,7 @@ class QuizProvider extends ChangeNotifier{
 
   void setCategory(String c){
     _category = c;
-    _questions = c == 'All' ? _all.where((q) => q.category == c).toList();
+    _questions = c == 'All' ? _all :_all.where((q) => q.category == c).toList();
     _resetQuiz();
     notifyListeners();
   }
