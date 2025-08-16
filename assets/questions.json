@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "category": "Math",
+    "question": "Evaluate: $$\\int_0^1 x^2\\,dx$$",
+    "options": ["\\(\\frac{1}{2}\\)", "\\(\\frac{1}{3}\\)", "\\(\\frac{2}{3}\\)", "1"],
+    "answer_index": 1
+  },
+  {
+    "id": 2,
+    "category": "Physics",
+    "question": "Force equation is given by $F=ma$. If $m=2\\,kg$ and $a=3\\,m/s^2$, what is $F$?",
+    "options": ["3 N","5 N","6 N","9 N"],
+    "answer_index": 2
+  },
+  {
+    "id": 3,
+    "category": "General",
+    "question": "What is the capital of France?",
+    "options": ["Paris","London","Rome","Berlin"],
+    "answer_index": 0
+  }
+]
