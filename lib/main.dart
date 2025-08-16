@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app_latex/services/local_store.dart';
 import 'package:quiz_app_latex/views/home_screen.dart';
+import 'package:quiz_app_latex/views/leaderboard_screen.dart';
+import 'package:quiz_app_latex/views/results_screen.dart';
 
 import 'providers/quiz_provider.dart';
 import 'providers/theme_provider.dart';
+import 'views/quiz_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,9 +48,9 @@ class MyApp extends StatelessWidget {
       themeMode: theme.mode,
       routes: {
         '/': (_) => const HomeScreen(),
-        // '/quiz': (_) => const QuizScreen(),
-        // '/results': (_) => const ResultsScreen(),
-        // '/leaderboard': (_) => const LeaderboardScreen(),
+        '/quiz': (_) => const QuizScreen(),
+        '/results': (_) => const ResultsScreen(),
+        '/leaderboard': (_) => const LeaderboardScreen(),
       },
      );
   }

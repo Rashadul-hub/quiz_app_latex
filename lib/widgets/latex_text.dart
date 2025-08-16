@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:flutter_tex/flutter_tex.dart';
 
 class LatexText extends StatelessWidget {
   final String tex;
@@ -8,6 +8,17 @@ class LatexText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Math.tex(tex, textStyle: style);
+    return TeXView(
+      child: TeXViewDocument(
+        tex,
+        style: TeXViewStyle(
+          padding: TeXViewPadding.all(8),
+          backgroundColor: Colors.transparent,
+        ),
+      ),
+      style: TeXViewStyle(
+        backgroundColor: Colors.transparent,
+      ),
+    );
   }
 }
