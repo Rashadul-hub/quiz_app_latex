@@ -10,6 +10,12 @@ A Flutter quiz app with LaTeX support for math and science questions, featuring 
 - Responsive Material 3 UI
 - Theme toggle (light/dark mode)
 ---
+<p align="left">
+    <img src="https://github.com/user-attachments/assets/2e6b22e7-24a3-47dc-8298-b80be12a1f80" width="230"/>
+  <img src="https://github.com/user-attachments/assets/99020145-ee2e-495b-b26c-8dd12da4b39f" width="230"/>
+    <img src="https://github.com/user-attachments/assets/c774097c-fa11-4f5a-8b59-60b265af6e64" width="230"/>
+
+</p>
 
 ---
 ## Setup Instructions
